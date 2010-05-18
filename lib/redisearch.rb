@@ -41,6 +41,26 @@ module Redisearch
     Configurator.settings
   end
   
+  # Index new words for search
+  def index( _text, _uid )
+    # TODO
+  end
+  
+  # Search for a word
+  def search( _word )
+    # TODO
+  end
+  
+  # Remove a UID from indexes
+  def remove( _uid )
+    # TODO
+  end
+  
+  # Reindex and existing UID with new text
+  def reindex( _uid, _text )
+    # TODO
+  end
+  
   # Redisearch connection info
   def to_s
     "Redisearch client connection to #{Server.redis.client.host}:#{Server.redis.client.port}"
