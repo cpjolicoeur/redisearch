@@ -7,8 +7,8 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.version = Redisearch::Version
     gem.name = "redisearch"
-    gem.summary = %Q{TODO: REDIS backed full-text search for Ruby}
-    gem.description = %Q{TODO: Full-text search system for Ruby using REDIS for storage}
+    gem.summary = %Q{REDIS backed full-text search for Ruby}
+    gem.description = %Q{Full-text search system for Ruby using REDIS for storage}
     gem.email = "cpjolicoeur@gmail.com"
     gem.homepage = "http://github.com/cpjolicoeur/redisearch"
     gem.authors = ["Craig P Jolicoeur"]
