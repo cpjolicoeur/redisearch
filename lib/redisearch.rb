@@ -14,37 +14,24 @@ module Redisearch
   include Helpers
   extend self
   
+  # Create a new connection to a Redis server
+  #
   # Accepts:
   #   1. A 'hostname:port' string
   #   2. A 'hostname:port:db' string 
   #   3. An instance of 'Redis', 'Redis::Client', 'Redis::DistRedis'
-  def redis=(server)
-    case server
-    when String
-      host, port, db = server.split(':')
-      @redis = Redis.new(
-        :host => host,
-        :port => port,
-        :db => db,
-        :thread_safe => true
-      )
-    when Redis, Redis::Client, Redis::DistRedis
-      @redis = server
-    else
-      raise "Can't connect to redis server at: #{server.inspect}"
-    end
+  def connect( _server )
+    Server.redis = _server
   end
   
   # Return the current redis connection
   # * will create a new connection if none current exists
   def redis
-    return @redis if @redis
-    self.redis = 'localhost:6379' # default redis connection
-    self.redis
+    Server.redis
   end
   
   # Redisearch connection info
   def to_s
-    "Redisearch client connection to #{redis.server}"
+    "Redisearch client connection to #{Server.redis.client.host}:#{Server.redis.client.port}"
   end
 end
