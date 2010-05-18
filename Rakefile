@@ -10,6 +10,7 @@ begin
     gem.email = "cpjolicoeur@gmail.com"
     gem.homepage = "http://github.com/cpjolicoeur/redisearch"
     gem.authors = ["Craig P Jolicoeur"]
+    gem.add_dependency "redis", ">= 2"
     gem.add_development_dependency "shoulda", ">= 2"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
