@@ -30,6 +30,17 @@ module Redisearch
     Server.redis
   end
   
+  # Update Redisearch configuration options
+  # Accepts a hash of new setting values
+  def configure( _new_settings )
+    Configurator.update_settings( _new_settings )
+  end
+  
+  # Return the current Redisearch configuration settings
+  def settings
+    Configurator.settings
+  end
+  
   # Redisearch connection info
   def to_s
     "Redisearch client connection to #{Server.redis.client.host}:#{Server.redis.client.port}"

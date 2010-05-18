@@ -8,10 +8,10 @@ module Redisearch #:nodoc:
     #   1. A 'hostname:port' string
     #   2. A 'hostname:port:db' string 
     #   3. An instance of 'Redis', 'Redis::Client', 'Redis::DistRedis'
-    def redis=(server)
+    def redis=( _server )
       case server
       when String
-        host, port, db = server.split(':')
+        host, port, db = _server.split(':')
         @redis = Redis.new(
           :host => host,
           :port => port,
@@ -19,7 +19,7 @@ module Redisearch #:nodoc:
           :thread_safe => true
         )
       when Redis, Redis::Client, Redis::DistRedis
-        @redis = server
+        @redis = _server
       else
         raise "Can't connect to redis server at: #{server.inspect}"
       end
