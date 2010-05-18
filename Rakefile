@@ -3,7 +3,9 @@ require 'rake'
 
 begin
   require 'jeweler'
+  require File.dirname( __FILE__ ) + '/lib/redisearch/version.rb'
   Jeweler::Tasks.new do |gem|
+    gem.version = Redisearch::Version
     gem.name = "redisearch"
     gem.summary = %Q{TODO: REDIS backed full-text search for Ruby}
     gem.description = %Q{TODO: Full-text search system for Ruby using REDIS for storage}
