@@ -1,6 +1,6 @@
 = redisearch
 
-Description goes here.
+Full-text search gem for Ruby using a REDIS backend.
 
 == Note on Patches/Pull Requests
  
