@@ -1,31 +1,34 @@
 require 'redis'
 
+$:.unshift( File.dirname(__FILE__) ) unless $:.include?( File.dirname(__FILE__) ) || $:.include?( File.expand_path( File.dirname(__FILE__) ) )
+
 require 'redisearch/version'
-require 'redisearch/errors'
 require 'redisearch/helpers'
+require 'redisearch/errors'
+require 'redisearch/configurator'
+require 'redisearch/indexer'
+require 'redisearch/searcher'
+require 'redisearch/server'
 
 module Redisearch
   include Helpers
-  # extend self
+  extend self
   
   # Accepts:
   #   1. A 'hostname:port' string
   #   2. A 'hostname:port:db' string 
-  #   3. An instance of 'Redis', 'Redis::Client', 'Redis::DistRedis', 'Redis::Namespace'
+  #   3. An instance of 'Redis', 'Redis::Client', 'Redis::DistRedis'
   def redis=(server)
     case server
     when String
       host, port, db = server.split(':')
-      redis = Redis.new(
+      @redis = Redis.new(
         :host => host,
         :port => port,
         :db => db,
         :thread_safe => true
       )
-      @redis = Redis::Namespace.new( :redisearch, :redis => redis )
     when Redis, Redis::Client, Redis::DistRedis
-      @redis = Redis::Namespace.new( :redisearch, :redis => server )
-    when Redis::Namespace
       @redis = server
     else
       raise "Can't connect to redis server at: #{server.inspect}"
