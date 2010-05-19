@@ -61,5 +61,5 @@ def context(*args, &block)
   klass.class_eval &block
 end
 
-class Test::Unit::TestCase
-end
+# class Test::Unit::TestCase
+# end
