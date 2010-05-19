@@ -32,4 +32,11 @@ context "Redisearch::Configurator" do
     assert_equal 3, Redisearch::Configurator.settings[:min_word_length]
   end
 
+  should "allow stop words to be an Array or String" do
+    Redisearch::Configurator.update_settings( :stop_words => "foobar" )
+    assert_equal ['foobar'], Redisearch::Configurator.settings[:stop_words]
+    Redisearch::Configurator.update_settings( :stop_words => ['foo', 'bar', 'baz'] )
+    assert_equal ['foo', 'bar', 'baz'], Redisearch::Configurator.settings[:stop_words]
+  end
+
 end

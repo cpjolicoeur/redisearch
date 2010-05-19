@@ -17,6 +17,7 @@ module Redisearch #:nodoc
     #   2) :stop_words (Array)
     #   3) :punctuation_chars (String)
     def update_settings( _options={} )
+      _options[:stop_words] = _options[:stop_words].to_a if _options[:stop_words].kind_of?( String )
       @settings = settings.merge( _options )
     end
     
