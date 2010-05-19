@@ -2,6 +2,12 @@
 
 Full-text search gem for Ruby using a REDIS backend.
 
+== Usage
+
+Redisearch is still in *alpha* (meaning not fully functional) so use at your own caution
+
+The usage documentation will be updated when a first official release is available
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
