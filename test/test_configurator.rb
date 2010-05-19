@@ -11,7 +11,7 @@ context "Redisearch::Configurator" do
     assert Redisearch::Configurator.settings[:stop_words].include?( 'the' )
     assert Redisearch::Configurator.settings[:stop_words].include?( 'and' )
     assert Redisearch::Configurator.settings[:stop_words].include?( 'that' )
-    assert_equal ".,;:!?@$%^&*()--<>[]{}\\|/`~'\"", Redisearch::Configurator.settings[:punctuation_chars]
+    assert_equal %Q#.,;:!?@$%^&*\\(\\)\\[\\]\\{\\}\\\\"\'\|`~\\/#, Redisearch::Configurator.settings[:punctuation_chars]
   end
 
   should "allow default settings to be overridden" do
@@ -37,6 +37,12 @@ context "Redisearch::Configurator" do
     assert_equal ['foobar'], Redisearch::Configurator.settings[:stop_words]
     Redisearch::Configurator.update_settings( :stop_words => ['foo', 'bar', 'baz'] )
     assert_equal ['foo', 'bar', 'baz'], Redisearch::Configurator.settings[:stop_words]
+  end
+
+  should "compile the punctuation regexp on settings update" do
+    assert_kind_of Regexp, Redisearch::Configurator.settings[:punctuation_regexp]
+    Redisearch::Configurator.update_settings( :punctuation_chars => 'abc' )
+    assert_equal /abc/, Redisearch::Configurator.settings[:punctuation_regexp]
   end
 
 end
