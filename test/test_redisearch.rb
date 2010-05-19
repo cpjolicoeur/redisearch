@@ -1,7 +1,19 @@
 require 'helper'
 
-class TestRedisearch < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+context "Redisearch" do
+  setup do
+    Redisearch.redis.flushall
   end
+
+  test "default test" do
+    assert true
+  end
+  
+  # test "can update configuration settings" do
+  #   assert false, "DUMMY TEST"
+  # end
+  # 
+  # test "can connect to Redis server" do 
+  #   pending
+  # end
 end

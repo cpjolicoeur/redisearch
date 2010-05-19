@@ -9,7 +9,7 @@ module Redisearch #:nodoc:
     #   2. A 'hostname:port:db' string 
     #   3. An instance of 'Redis', 'Redis::Client', 'Redis::DistRedis'
     def redis=( _server )
-      case server
+      case _server
       when String
         host, port, db = _server.split(':')
         @redis = Redis.new(

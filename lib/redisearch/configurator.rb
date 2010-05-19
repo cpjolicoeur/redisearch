@@ -23,7 +23,17 @@ module Redisearch #:nodoc
     # return the current configuration settins
     def settings
       return @settings if @settings
-      @settings = {
+      @settings = default_settings
+    end
+
+    # Reset settings to default configuration
+    def reset_to_defaults!
+      @settings = default_settings
+    end
+
+    # Default settings
+    def default_settings
+      {
         :min_word_length => MIN_WORD_LENGTH,
         :stop_words => STOP_WORDS,
         :punctuation_chars => PUNCTUATION_CHARS
