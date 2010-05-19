@@ -9,7 +9,7 @@ module Redisearch #:nodoc
     # Words which should not be indexed
     STOP_WORDS        = ['the', 'of', 'to', 'and', 'a', 'in', 'is', 'it', 'you', 'that']
     # Convert punctuation to spaces before indexing
-    PUNCTUATION_CHARS = %Q#.,;:!?@$%^&*\\(\\)\\[\\]\\{\\}\\\\"\'\|`~\\/#
+    PUNCTUATION_CHARS = %Q#[.,;:!?@$%^&*\\(\\)\\[\\]\\{\\}\\\\"\'\|`~\\/\\n\\t]#
 
     # update the default configuration
     # Accepts:
@@ -19,7 +19,7 @@ module Redisearch #:nodoc
     def update_settings( _options={} )
       _options[:stop_words] = _options[:stop_words].to_a if _options[:stop_words].kind_of?( String )
       @settings = settings.merge( _options )
-      @settings[:punctuation_regexp] = Regexp.new( @settings[:punctuation_chars] )
+      @settings[:punctuation_regexp] = Regexp.new( @settings[:punctuation_chars], true )
     end
     
     # return the current configuration settins
@@ -39,7 +39,7 @@ module Redisearch #:nodoc
         :min_word_length    => MIN_WORD_LENGTH,
         :stop_words         => STOP_WORDS,
         :punctuation_chars  => PUNCTUATION_CHARS,
-        :punctuation_regexp => Regexp.new( PUNCTUATION_CHARS )
+        :punctuation_regexp => Regexp.new( PUNCTUATION_CHARS, true )
       }
     end
 
